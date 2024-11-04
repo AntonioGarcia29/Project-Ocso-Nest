@@ -19,7 +19,12 @@ export class ProductsService {
     return product;
   }
   findAll() {
-    return this.productRepository.find();
+    return this.productRepository.find({
+      loadEagerRelations: true,
+      relations: {
+        provider: true,
+      }
+    });
   }
 
   findOne(id: string) {

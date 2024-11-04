@@ -5,6 +5,7 @@ import { EmployeesModule } from './employees/employees.module';
 import { ProductsModule } from './products/products.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { ProvidersModule } from './providers/providers.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -20,7 +21,7 @@ import { ConfigModule } from '@nestjs/config';
       synchronize: true,
     }),
     EmployeesModule, 
-    ProductsModule
+    ProductsModule, ProvidersModule
   ],
   controllers: [AppController],
   providers: [AppService],
