@@ -41,7 +41,7 @@ export class RegionsService {
       regionId: id
     })
     return {
-      message : `tu provider con id: {id}, ha sido eliminado`
+      message : `tu region con id: {id}, ha sido eliminado`
     }
   }
 }
