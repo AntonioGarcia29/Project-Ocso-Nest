@@ -6,6 +6,9 @@ import { ProductsModule } from './products/products.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { ProvidersModule } from './providers/providers.module';
+import { ManagersModule } from './managers/managers.module';
+import { LocationsModule } from './locations/locations.module';
+import { RegionsModule } from './regions/regions.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -21,7 +24,7 @@ import { ProvidersModule } from './providers/providers.module';
       synchronize: true,
     }),
     EmployeesModule, 
-    ProductsModule, ProvidersModule
+    ProductsModule, ProvidersModule, ManagersModule, LocationsModule, RegionsModule
   ],
   controllers: [AppController],
   providers: [AppService],
