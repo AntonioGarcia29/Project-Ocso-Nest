@@ -6,6 +6,7 @@ import { filter } from 'rxjs';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Product } from './entities/product.entity';
+import { Provider } from 'src/providers/entities/provider.entity';
 
 @Injectable()
 export class ProductsService {
@@ -18,14 +19,19 @@ export class ProductsService {
     const product = this.productRepository.save(createProductDto)
     return product;
   }
-  findAll() {
-    return this.productRepository.find({
-      loadEagerRelations: true,
-      relations: {
-        provider: true,
-      }
-    });
-  }
+async findAll() {
+  return this.productRepository.createQueryBuilder('product')
+    .leftJoinAndSelect('product.provider', 'provider')
+    .select([
+      'product.productId',
+      'product.productName',
+      'product.price',
+      'provider.providerName', // Propiedades específicas del provider
+      'provider.providerEmail' // Agrega más propiedades según necesites
+    ])
+    .getMany();
+}
+
 
   findOne(id: string) {
     const product = this.productRepository.findOneBy({
@@ -35,7 +41,11 @@ export class ProductsService {
       return product
   }
   findByProvider(id: string){
-      return "hola"
+      return this.productRepository.findBy({
+        provider: {
+          providerId: id,
+        }
+      })
   }
 
   async update(id: string, updateProductDto: UpdateProductDto) {
@@ -57,3 +67,4 @@ export class ProductsService {
     }
   }
 }
+ 
