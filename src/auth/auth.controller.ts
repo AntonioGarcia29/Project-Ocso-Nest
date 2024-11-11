@@ -6,8 +6,12 @@ import { UpdateUserDto } from './dto/update-User.dto';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
-  @Post()
+  @Post("signup")
   signUp(@Body()CreateUserDto:CreateUserDto){
     return this.authService.registerUser(CreateUserDto)
+  }
+  @Post("login")
+  login(@Body() CreateUserDto:CreateUserDto){
+    return this.authService.loginUser(CreateUserDto)
   }
 }
