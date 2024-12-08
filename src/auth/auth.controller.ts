@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-User.dto';
 import { UpdateUserDto } from './dto/update-User.dto';
 import { LoginUserDto } from './dto/login-user.dto';
+import path from 'path';
 
 @Controller('auth')
 export class AuthController {
@@ -14,5 +15,9 @@ export class AuthController {
   @Post("login")
   login(@Body() LoginUserDto:LoginUserDto){
     return this.authService.loginUser(LoginUserDto)
+  }
+  @Patch("/:email")
+  updateUser(@Param('email')userEmail: string, UpdateUserDto: UpdateUserDto){
+    return this.authService.updateUser(userEmail, UpdateUserDto)
   }
 }

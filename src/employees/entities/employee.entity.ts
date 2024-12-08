@@ -6,18 +6,22 @@ export class Employee {
     @PrimaryGeneratedColumn('uuid')
     employeeid: string;
     @Column('text')
-    name: string;
+    employeeName: string;
     @Column('text')
-    lastName: string;
-    @Column('text')
+    employeeLastName: string;
+    @Column('text',{
+        unique:true
+    })
     phoneNumber: string;
-    @Column('text')
-    email: string;
+    @Column('text',{
+        unique: true
+    })
+    employeeEmail: string;
     @Column({
         type: 'text',
         nullable: true
     })
-    photoURL: string
+    employeePhoto: string
     
     @ManyToOne(()=> Location, (location) => location.employees)
     @JoinColumn({

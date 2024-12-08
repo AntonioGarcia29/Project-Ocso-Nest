@@ -6,7 +6,9 @@ import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typ
 export class User {
     @PrimaryGeneratedColumn('uuid')
     userId: string;
-    @Column('text')
+    @Column('text',{
+        unique: true
+    })
     userEmail: string;
     @Column('text')
     userPassword: string;
