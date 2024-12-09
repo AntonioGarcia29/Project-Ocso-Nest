@@ -1,3 +1,4 @@
+import { IsObject, IsOptional } from "class-validator";
 import { Employee } from "src/employees/entities/employee.entity";
 import { Manager } from "src/managers/entities/manager.entity";
 import { Region } from "src/regions/entities/region.entity";
@@ -13,7 +14,9 @@ export class Location{
     @Column('simple-array')
     locationLatLng: number[];
 
-    @OneToOne(()=> Manager)
+    @OneToOne(()=> Manager,{
+        eager:true
+    })
     @JoinColumn({
         name: "managerId"
     })
@@ -27,4 +30,6 @@ export class Location{
 
     @OneToMany(()=>Employee, (employee)=> employee.location)
     employees: Employee[]
+
+
 }

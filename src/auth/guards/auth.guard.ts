@@ -20,13 +20,11 @@ export class AuthGuard implements CanActivate {
       throw new UnauthorizedException();
     }
     try {
-      const{ payload } = await this.jwtService.verifyAsync(
-        token,
-        {
-          secret: JWT_KEY
-        }
-      );
-      request['user'] = payload;
+      const decodedToken = await this.jwtService.verifyAsync(token, {
+        secret: JWT_KEY,
+      });
+      // Asigna directamente decodedToken y verifica la estructura
+      request['user'] = decodedToken.payload || decodedToken; 
     } catch {
       throw new UnauthorizedException();
     }

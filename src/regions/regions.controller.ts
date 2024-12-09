@@ -22,7 +22,7 @@ export class RegionsController {
   @Auth(ROLES.EMPLOYEE, ROLES.MANAGER)
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.regionsService.findOne(+id);
+    return this.regionsService.findOne(+id); 
   }
 
   @Auth()

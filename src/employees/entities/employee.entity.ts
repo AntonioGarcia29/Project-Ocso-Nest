@@ -22,7 +22,6 @@ export class Employee {
         nullable: true
     })
     employeePhoto: string
-    
     @ManyToOne(()=> Location, (location) => location.employees)
     @JoinColumn({
         name: "locationId"
