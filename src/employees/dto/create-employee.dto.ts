@@ -40,6 +40,6 @@ employeeEmail: string;
 @ApiPropertyOptional()
 @IsObject()
 @IsOptional()
-location: LocationEmployeeDto;
+location: Location;
 }
 
