@@ -1,6 +1,4 @@
 import { ConfigurableModuleBuilder, Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { EmployeesModule } from './employees/employees.module';
 import { ProductsModule } from './products/products.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -27,7 +25,7 @@ import { AuthModule } from './auth/auth.module';
     EmployeesModule, 
     ProductsModule, ProvidersModule, ManagersModule, LocationsModule, RegionsModule, AuthModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
